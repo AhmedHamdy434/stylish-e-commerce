@@ -1,9 +1,60 @@
 {
-  "HomePage": {
-    "title": "أهلا بك",
-    "about": "صفحة المعلومات"
+  "navbar": {
+    "logo": "ستايلش",
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "cart": "السلة",
+    "wishlist": "المفضلة",
+    "language": "اللغة",
+    "signin": "تسجيل دخول",
+    "signout": "تسجيل خروج",
+    "profile": "الملف الشخصى",
+    "auth": {
+      "signIn": "تسجيل الدخول",
+      "signUp": "إنشاء حساب",
+      "username": "اسم المستخدم",
+      "usernameRequired": "اسم المستخدم مطلوب",
+      "usernameMin": "يجب أن يكون اسم المستخدم 3 أحرف على الأقل",
+      "email": "البريد الإلكتروني",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "بريد إلكتروني غير صالح",
+      "password": "كلمة المرور",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordMin": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "confirmPasswordRequired": "يرجى تأكيد كلمة المرور",
+      "confirmPasswordMismatch": "كلمتا المرور غير متطابقتين",
+      "alreadyHaveAccount": "لديك حساب بالفعل؟",
+      "dontHaveAccount": "ليس لديك حساب؟",
+      "login": "تسجيل الدخول",
+      "signUpNow": "إنشاء حساب",
+      "continueWithGoogle": "تابع باستخدام جوجل",
+      "buyer": "مشترى",
+      "seller": "بائع"
+    }
   },
-  "navbar":{
-    "language": "العربية"
+  "HomePage": {
+    "LandingSection": {
+      "title": "اكتشف الموضة المناسبة",
+      "highlight": "للجميع",
+      "description1": "ملابس أنيقة",
+      "bold": " للرجال والنساء والأطفال",
+      "description2": "اكتشف إطلالتك المثالية مع أحدث تشكيلاتنا.",
+      "shopnow": "تسوق الآن"
+    }
+  },
+  "footer": {
+    "brand": "متجر الأزياء",
+    "about": "اكتشف ملابس أنيقة للرجال والنساء والأطفال. رحلتك في عالم الموضة تبدأ من هنا.",
+    "shop": "تسوق",
+    "men": "رجال",
+    "women": "نساء",
+    "kids": "أطفال",
+    "company": "الشركة",
+    "about_us": "من نحن",
+    "contact": "اتصل بنا",
+    "faq": "الأسئلة الشائعة",
+    "follow_us": "تابعنا",
+    "rights": "جميع الحقوق محفوظة."
   }
 }

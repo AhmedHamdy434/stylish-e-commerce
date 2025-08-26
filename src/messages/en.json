@@ -1,9 +1,60 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
-  },
   "navbar": {
-    "language": "English"
+    "logo": "Stylish",
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "language": "Language",
+    "signin": "Sign In",
+    "signout": "Sign Out",
+    "profile": "Profile",
+    "auth": {
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "username": "Username",
+      "usernameRequired": "Username is required",
+      "usernameMin": "Username must be at least 3 characters",
+      "email": "Email",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "password": "Password",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 6 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordRequired": "Please confirm your password",
+      "confirmPasswordMismatch": "Passwords do not match",
+      "alreadyHaveAccount": "Already have an account?",
+      "dontHaveAccount": "Don’t have an account?",
+      "login": "Login",
+      "signUpNow": "Sign Up",
+      "continueWithGoogle": "Continue with Google",
+      "buyer": "Buyer",
+      "seller": "Seller"
+    }
+  },
+  "HomePage": {
+    "LandingSection": {
+      "title": "Discover Fashion for",
+      "highlight": "Everyone",
+      "description1": "Stylish clothing for ",
+      "bold": "Men, Women, and Kids.",
+      "description2": " Find your perfect look with our latest collections.",
+      "shopnow": "Shop Now"
+    }
+  },
+  "footer": {
+    "brand": "FashionStore",
+    "about": "Discover stylish clothing for Men, Women, and Kids. Your fashion journey starts here.",
+    "shop": "Shop",
+    "men": "Men",
+    "women": "Women",
+    "kids": "Kids",
+    "company": "Company",
+    "about_us": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "follow_us": "Follow Us",
+    "rights": "All rights reserved."
   }
 }
