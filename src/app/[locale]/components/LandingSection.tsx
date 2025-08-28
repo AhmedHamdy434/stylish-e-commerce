@@ -5,7 +5,7 @@ const LandingSection = async () => {
   const t = await getTranslations("HomePage.LandingSection");
 
   return (
-    <section className="relative min-h-[calc(100vh_-4rem)] flex items-center">
+    <section className="relative !mb-0 min-h-[calc(100vh_-4rem)] flex items-center">
       <div className="container mx-auto px-6 lg:px-12 relative z-10 grid md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6 text-center md:text-start ltr:animate-fade-in-left rtl:animate-fade-in-right">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">

@@ -45,7 +45,7 @@
   --animate-fade-in-right: fadeInRight 0.8s ease-out forwards;
   --animate-zoom-in: zoomIn 0.8s ease-out forwards;
   --breakpoint-xs: 28rem;
-  --container-xs:25rem
+  --container-xs: 25rem;
 }
 
 :root {
@@ -157,4 +157,8 @@ button {
     opacity: 1;
     transform: scale(1);
   }
+}
+.container {
+  padding-inline: 0.75rem;
+  
 }

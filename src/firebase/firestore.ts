@@ -7,6 +7,9 @@ import {
   getDocs,
   getDoc,
   where,
+  QueryDocumentSnapshot,
+  DocumentData,
+  startAfter,
 } from "firebase/firestore";
 import { db } from "./config";
 export type ProductType = {
@@ -23,8 +26,8 @@ export type ProductType = {
   sizes: string[];
   title: string;
   views: number;
-  sellerId:number;
-  sellerName:string;
+  sellerId: number;
+  sellerName: string;
 };
 export type SortOption =
   | "priceAsc"
@@ -96,20 +99,26 @@ export const getMostDiscount = async (n: number) => {
   const snapshot = await getDocs(q);
   return snapshot.docs.map((doc) => doc.data()) as ProductType[];
 };
+interface SearchFilterSortParams {
+  keyword?: string;
+  category?: string;
+  sortBy?: SortOption;
+  limitCount?: number;
+  lastDoc?: QueryDocumentSnapshot<DocumentData> | null;
+}
 
 export const searchFilterSortProducts = async ({
   keyword = "",
   category = "",
   sortBy,
-  limitCount,
-}: {
-  keyword?: string;
-  category?: string;
-  sortBy?: SortOption;
-  limitCount?: number;
-}): Promise<ProductType[]> => {
+  limitCount = 10,
+  lastDoc = null,
+}: SearchFilterSortParams): Promise<{
+  products: ProductType[];
+  lastDoc: QueryDocumentSnapshot<DocumentData> | null;
+}> => {
   try {
-    const q = collection(db, "products");
+    const qRef = collection(db, "products");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const constraints: any[] = [];
@@ -126,11 +135,18 @@ export const searchFilterSortProducts = async ({
     else if (sortBy === "views") constraints.push(orderBy("views", "desc"));
     else if (sortBy === "rate") constraints.push(orderBy("rate", "desc"));
 
-    if (limitCount) constraints.push(limit(limitCount));
+    constraints.push(limit(limitCount));
 
-    const snapshot = await getDocs(query(q, ...constraints));
-    let products = snapshot.docs.map((doc) => doc.data() as ProductType);
+    if (lastDoc) {
+      constraints.push(startAfter(lastDoc));
+    }
 
+    const snapshot = await getDocs(query(qRef, ...constraints));
+    let products = snapshot.docs.map((doc) => ({
+      ...(doc.data() as ProductType),
+    }));
+
+    // keyword filtering (after fetch because Firestore doesn't support `contains`)
     if (keyword) {
       const keywordLower = keyword.toLowerCase();
       products = products.filter((p) =>
@@ -138,9 +154,14 @@ export const searchFilterSortProducts = async ({
       );
     }
 
-    return products;
+    return {
+      products,
+      lastDoc: snapshot.docs.length
+        ? snapshot.docs[snapshot.docs.length - 1]
+        : null,
+    };
   } catch (error) {
     console.error("Error in searchFilterSortProducts:", error);
-    return [];
+    return { products: [], lastDoc: null };
   }
 };

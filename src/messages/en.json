@@ -41,6 +41,42 @@
       "bold": "Men, Women, and Kids.",
       "description2": " Find your perfect look with our latest collections.",
       "shopnow": "Shop Now"
+    },
+    "sections": {
+      "headDiscount": "Limited time discounts",
+      "paragraphDiscount": "Grab top styles with exclusive price drops.",
+      "showMore": "Show More",
+      "headNewArrivals": "Best Trending",
+      "paragraphNewArrivals": "Discover the latest fashion trends just landed in store."
+    },
+    "features": {
+      "header": {
+        "title": "Why Shop With Us?"
+      },
+      "peace": {
+        "subtitle": "Comfortable Shopping",
+        "description": "Enjoy a smooth and secure shopping experience with easy returns, buyer protection, and 24/7 customer support."
+      },
+      "security": {
+        "subtitle": "Shop with Confidence",
+        "description": "Your data is always safe with us. We use secure payment gateways and never share your personal information."
+      },
+      "luxury": {
+        "subtitle": "Premium Collections",
+        "description": "Discover high-quality clothing with luxurious fabrics, modern cuts, and timeless designs made to impress."
+      },
+      "price": {
+        "subtitle": "Unbeatable Deals",
+        "description": "Find the best discounts on men’s, women’s, and kids’ fashion. Get trendy outfits without breaking the bank."
+      },
+      "location": {
+        "subtitle": "Fast Delivery",
+        "description": "Wherever you are, we deliver quickly and reliably. With warehouses in major cities, your orders reach you faster."
+      },
+      "efficient": {
+        "subtitle": "Easy Browsing",
+        "description": "Shop smarter with powerful filters, categories, and personalized recommendations to find the perfect outfit in minutes."
+      }
     }
   },
   "footer": {

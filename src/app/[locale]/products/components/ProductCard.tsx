@@ -9,7 +9,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     description,
     images,
     mainImage,
-    category,
     newPrice,
     oldPrice,
     discount,
@@ -29,11 +28,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     return 0;
   })();
 
-  const truncatedDescription =
-    description && description.length >50
-      ? description.slice(0, 50).trim() + "…"
-      : description ?? "";
-
   const formatPrice = (n?: number) =>
     n == null ? "—" : `${n.toLocaleString()} ${currency}`;
 
@@ -46,21 +40,13 @@ const ProductCard = ({ product }: { product: ProductType }) => {
       {/* IMAGE */}
       <figure className="relative rounded-2xl aspect-[4/3] w-full">
         <Image
-          width={50}
-          height={50}
+          width={400}
+          height={300}
           src={mainImage || (images && images[0]) || "/placeholder.png"}
           alt={title}
-          className="h-full w-full rounded-t-2xl object-cover transition duration-300 group-hover:scale-105"
           loading="lazy"
+          className="h-full w-full rounded-t-2xl object-cover transition duration-300 group-hover:scale-105"
         />
-
-        {/* category badge */}
-        {category && (
-          <span className="absolute start-3 top-3 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">
-            {category}
-          </span>
-        )}
-
         {/* discount badge */}
         {computedDiscount > 0 && (
           <span className="absolute end-3 top-3 rounded-full bg-rose-600 px-2.5 py-1 text-xs font-semibold text-white shadow">
@@ -89,7 +75,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         <div className="flex items-start justify-between gap-3">
           <h3
             id={`product-${id}-title`}
-            className="text-sm font-semibold text-zinc-900 line-clamp-2 dark:text-zinc-100"
+            className="text-sm truncate font-semibold text-zinc-900 line-clamp-2 dark:text-zinc-100"
           >
             {title}
           </h3>
@@ -145,8 +131,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             </div>
           )}
         </div>
-
-        {/* actions (server-rendered buttons/links; add data-* attributes for client wiring later) */}
         <div className="mt-4 flex items-center gap-3">
           <button
             type="button"
@@ -156,10 +140,9 @@ const ProductCard = ({ product }: { product: ProductType }) => {
           >
             Add to cart
           </button>
-
           <Link
             href={`/products/${id}`}
-            className="rounded-lg border px-2 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-200"
+            className="rounded-lg border px-2 py-2 text-sm font-medium hover:text-primary hover:underline border-border"
             aria-label={`View details for ${title}`}
           >
             Details
