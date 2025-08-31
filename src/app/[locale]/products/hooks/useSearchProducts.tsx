@@ -13,7 +13,7 @@ interface UseProductsParams {
 
 export function useSearchProducts({ keyword = "", category = "", sortBy, limitCount = 10 }: UseProductsParams) {
   const [products, setProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
   const [hasMore, setHasMore] = useState(true);

@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SortOption } from "@/firebase/firestore";
+import { useTranslations } from "next-intl";
 import { Dispatch, SetStateAction } from "react";
 
 type SearchSectionPropsType = {
@@ -27,17 +28,32 @@ const SearchSection = ({
   category,
   setCategory,
 }: SearchSectionPropsType) => {
+  const t = useTranslations("search");
+  const sortOptions = [
+    { value: "priceAsc", label: t("sort.priceAsc") },
+    { value: "priceDesc", label: t("sort.priceDesc") },
+    { value: "discount", label: t("sort.discount") },
+    { value: "views", label: t("sort.views") },
+    { value: "rate", label: t("sort.rate") },
+  ];
+
+  const categoryOptions = [
+    { value: "all", label: t("categories.all") },
+    { value: "men", label: t("categories.men") },
+    { value: "women", label: t("categories.women") },
+    { value: "kids", label: t("categories.kids") },
+  ];
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-3">
       <Input
-        placeholder="Search products..."
+        placeholder={t("input")}
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
-        className="flex-1"
+        className="flex-1 min-w-40 max-w-100"
       />
       <Select value={category} onValueChange={(val) => setCategory(val)}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Category" />
+          <SelectValue  placeholder={t("categories.category")} />
         </SelectTrigger>
         <SelectContent>
           {categoryOptions.map((opt) => (
@@ -52,8 +68,8 @@ const SearchSection = ({
         value={sortBy}
         onValueChange={(val) => setSortBy(val as SortOption)}
       >
-        <SelectTrigger className="w-[200px]">
-          <SelectValue placeholder="Sort by" />
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder={t("sort.sort")} />
         </SelectTrigger>
         <SelectContent>
           {sortOptions.map((opt) => (
@@ -68,18 +84,3 @@ const SearchSection = ({
 };
 
 export default SearchSection;
-
-const sortOptions = [
-  { value: "priceAsc", label: "Price: Low to High" },
-  { value: "priceDesc", label: "Price: High to Low" },
-  { value: "discount", label: "Top Discount" },
-  { value: "views", label: "Most Viewed" },
-  { value: "rate", label: "Top Rated" },
-];
-const categoryOptions: { value: string; label: string }[] = [
-  { value: "all", label: "All Categories" },
-  { value: "men", label: "Men" },
-  { value: "women", label: "Women" },
-  { value: "kids", label: "Kids" },
-  { value: "shoes", label: "Shoes" },
-];

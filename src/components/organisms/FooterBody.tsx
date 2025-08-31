@@ -6,15 +6,15 @@ const FooterBody = async () => {
   const linksData = [
     {
       title: t("men"),
-      to: "/",
+      to: "/products?category=men",
     },
     {
       title: t("women"),
-      to: "/",
+      to: "/products?category=women",
     },
     {
       title: t("kids"),
-      to: "/",
+      to: "/products?category=kids",
     },
   ];
   const linksAboutData = [

@@ -11,6 +11,7 @@ const SectionHome4 = async () => {
         data={data}
         heading={t("headNewArrivals")}
         paragraph={t("paragraphNewArrivals")}
+        to="/products?sort=views"
       />
     </div>
   );

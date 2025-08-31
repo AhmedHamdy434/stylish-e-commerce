@@ -10,6 +10,7 @@ import {
   QueryDocumentSnapshot,
   DocumentData,
   startAfter,
+  documentId,
 } from "firebase/firestore";
 import { db } from "./config";
 export type ProductType = {
@@ -81,13 +82,23 @@ export const getMostViewed = async (n: number) => {
   return snapshot.docs.map((doc) => doc.data()) as ProductType[];
 };
 
-export const filterByCategory = async (category: string) => {
+export const filterByCategory = async (
+  category: string,
+  limitNumber: number,
+  excludeId: string
+): Promise<ProductType[]> => {
   const q = query(
     collection(db, "products"),
-    where("category", "==", category)
+    where("category", "==", category),
+    where(documentId(), "!=", excludeId),
+    orderBy(documentId()),
+    limit(limitNumber)
   );
+
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((doc) => doc.data());
+  return snapshot.docs.map((doc) => ({
+    ...doc.data(),
+  })) as ProductType[];
 };
 
 export const getMostDiscount = async (n: number) => {

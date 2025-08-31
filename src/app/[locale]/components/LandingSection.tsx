@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import LandingButton from "./LandingButton";
+
 const LandingSection = async () => {
-  const t = await getTranslations("HomePage.LandingSection");
+
+const t = await getTranslations("HomePage.LandingSection");
 
   return (
     <section className="relative !mb-0 min-h-[calc(100vh_-4rem)] flex items-center">

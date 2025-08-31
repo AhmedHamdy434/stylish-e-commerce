@@ -8,11 +8,13 @@ type MostCardsComponentType = {
   heading: string;
   paragraph: string;
   data: ProductType[];
+  to: string;
 };
 const MostSectionComponent = async ({
   heading,
   paragraph,
   data,
+  to,
 }: MostCardsComponentType) => {
   const t = await getTranslations("HomePage.sections");
 
@@ -26,7 +28,7 @@ const MostSectionComponent = async ({
           <p className="text-foreground/80">{paragraph}</p>
         </div>
         <Link
-          href="/"
+          href={to}
           className="group flex justify-end pt-3 gap-2 items-center sm:min-w-46 ms-auto text-sm lg:text-lg text-main font-medium leading-6.5 tracking-[0.5px]"
         >
           <span className="group-hover:text-primary">{t("showMore")}</span>

@@ -4,13 +4,14 @@ import { getTranslations } from "next-intl/server";
 
 const SectionHome2 = async () => {
   const data = await getMostDiscount(4);
-  const t= await getTranslations("HomePage.sections")
+  const t = await getTranslations("HomePage.sections");
   return (
     <div className="container !mt-4 mx-auto">
       <MostSectionComponent
         data={data}
         heading={t("headDiscount")}
         paragraph={t("paragraphDiscount")}
+        to="/products?sort=discount"
       />
     </div>
   );

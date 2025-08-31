@@ -11,10 +11,23 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
-export const metadata: Metadata = {
-  title: "Stylish",
-  description: "best e-commerce",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params:  Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params; 
+
+  const isArabic = locale === "ar";
+
+  return {
+    title: isArabic ? "ستايليش" : "Stylish",
+    description: isArabic ? "أفضل متجر إلكتروني" : "Best e-commerce store",
+    icons: {
+      icon: "/logo.png",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

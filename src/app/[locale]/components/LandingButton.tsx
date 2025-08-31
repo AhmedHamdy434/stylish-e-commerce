@@ -8,7 +8,7 @@ const LandingButton = () => {
   return (
     <>
      
-        <Link href="/">
+        <Link href="/products">
           <Button>{t("shopnow")}</Button>
         </Link>
    

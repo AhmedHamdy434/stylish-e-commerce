@@ -79,6 +79,32 @@
       }
     }
   },
+  "search": {
+    "input": "Search products ...",
+    "heading": "Find the Perfect Style for You",
+    "paragraph": "Discover a wide collection of men’s, women’s, and kids’ fashion at unbeatable prices. Use our smart filters to sort products by price, rating, views, or discounts, and explore categories that match your unique taste. Whether you’re looking for everyday essentials or the latest trends, we’ve got you covered.",
+    "sort": {
+      "sort": "Sort by",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low",
+      "discount": "Top Discount",
+      "views": "Most Viewed",
+      "rate": "Top Rated"
+    },
+    "categories": {
+      "category": "category",
+      "similarProductsHeading": "Other {category}'s clothes",
+      "all": "All Categories",
+      "men": "Men",
+      "women": "Women",
+      "kids": "Kids"
+    },
+    "card": {
+      "details": "Details",
+      "cart": "Add to cart"
+    },
+    "more": "Load More"
+  },
   "footer": {
     "brand": "FashionStore",
     "about": "Discover stylish clothing for Men, Women, and Kids. Your fashion journey starts here.",

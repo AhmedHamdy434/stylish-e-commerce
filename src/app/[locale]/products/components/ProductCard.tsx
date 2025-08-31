@@ -1,7 +1,10 @@
-import Stars from "@/components/atoms/Stars";
 import { ProductType } from "@/firebase/firestore";
-import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import CardButtons from "./CardButtons";
+import StarsAll from "@/components/atoms/StarsAll";
+import Prices from "@/components/atoms/Prices";
+import Sizes from "@/components/atoms/Sizes";
+import Views from "@/components/atoms/Views";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
   const {
@@ -18,18 +21,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     views,
     sellerName,
   } = product;
-  const currency = "EGP";
-  const computedDiscount = (() => {
-    if (typeof discount === "number" && discount > 0)
-      return Math.round(discount);
-    if (oldPrice && oldPrice > newPrice) {
-      return Math.round(((oldPrice - newPrice) / oldPrice) * 100);
-    }
-    return 0;
-  })();
-
-  const formatPrice = (n?: number) =>
-    n == null ? "—" : `${n.toLocaleString()} ${currency}`;
 
   return (
     <article
@@ -48,25 +39,12 @@ const ProductCard = ({ product }: { product: ProductType }) => {
           className="h-full w-full rounded-t-2xl object-cover transition duration-300 group-hover:scale-105"
         />
         {/* discount badge */}
-        {computedDiscount > 0 && (
+        {discount > 0 && (
           <span className="absolute end-3 top-3 rounded-full bg-rose-600 px-2.5 py-1 text-xs font-semibold text-white shadow">
-            -{computedDiscount}%
+            -{discount}%
           </span>
         )}
-
-        {sizes?.length > 0 && (
-          <div className="absolute start-3 bottom-3 hidden space-x-2 md:flex">
-            {sizes.map((size) => (
-              <span
-                key={size}
-                className="rounded-lg uppercase bg-primary px-2.5 py-1 text-xs text-black/90"
-                data-product-size={size}
-              >
-                {size}
-              </span>
-            ))}
-          </div>
-        )}
+        <Sizes sizes={sizes} />
       </figure>
 
       {/* BODY */}
@@ -81,21 +59,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
           </h3>
 
           {/* views */}
-          <div className="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              className="inline-block"
-            >
-              <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-            <span>{Intl.NumberFormat().format(views || 0)}</span>
-          </div>
+          <Views views={views} />
         </div>
 
         {/* seller + rating */}
@@ -106,48 +70,16 @@ const ProductCard = ({ product }: { product: ProductType }) => {
               {sellerName || "Owner"}
             </span>
           </div>
-
-          <div className="flex items-center gap-2">
-            <Stars rate={rate} />
-            <span className="text-xs text-foreground/60">
-              {(rate ?? 0).toFixed(1)}
-            </span>
-          </div>
+          <StarsAll rate={rate} />
         </div>
 
         {/* description */}
         <p className="mt-3 text-sm h-10 leading-5 line-clamp-2 text-zinc-600 dark:text-zinc-300 max-h-16 overflow-hidden">
           {description}
         </p>
-
         {/* prices */}
-        <div className="flex items-baseline gap-3">
-          <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
-            {formatPrice(newPrice)}
-          </div>
-          {oldPrice && oldPrice > newPrice && (
-            <div className="text-sm text-zinc-500 line-through dark:text-zinc-500">
-              {formatPrice(oldPrice)}
-            </div>
-          )}
-        </div>
-        <div className="mt-4 flex items-center gap-3">
-          <button
-            type="button"
-            className="flex-1 whitespace-nowrap rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:brightness-95 disabled:opacity-60"
-            data-action="add-to-cart"
-            data-product-id={id}
-          >
-            Add to cart
-          </button>
-          <Link
-            href={`/products/${id}`}
-            className="rounded-lg border px-2 py-2 text-sm font-medium hover:text-primary hover:underline border-border"
-            aria-label={`View details for ${title}`}
-          >
-            Details
-          </Link>
-        </div>
+        <Prices newPrice={newPrice} oldPrice={oldPrice} />
+        <CardButtons id={id} />
       </div>
     </article>
   );
