@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -11,23 +11,23 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
-export async function generateMetadata({
-  params,
-}: {
-  params:  Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params; 
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params:  Promise<{ locale: string }>;
+// }): Promise<Metadata> {
+//   const { locale } = await params;
 
-  const isArabic = locale === "ar";
+//   const isArabic = locale === "ar";
 
-  return {
-    title: isArabic ? "ستايليش" : "Stylish",
-    description: isArabic ? "أفضل متجر إلكتروني" : "Best e-commerce store",
-    icons: {
-      icon: "/logo.png",
-    },
-  };
-}
+//   return {
+//     title: isArabic ? "ستايليش" : "Stylish",
+//     description: isArabic ? "أفضل متجر إلكتروني" : "Best e-commerce store",
+//     icons: {
+//       icon: "/logo.png",
+//     },
+//   };
+// }
 
 export default async function RootLayout({
   children,
