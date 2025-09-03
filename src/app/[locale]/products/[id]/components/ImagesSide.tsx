@@ -14,6 +14,7 @@ const ImagesSide = ({ images }: { images: string[] }) => {
           src={images[number]}
           className="w-full rounded-2xl"
           alt="main-Image"
+          priority
         />
       </div>
       <div className="flex gap-4 md:flex-col h-full md:justify-center flex-2 cursor-pointer">
@@ -31,6 +32,7 @@ const ImagesSide = ({ images }: { images: string[] }) => {
               src={i}
               alt="main-Image"
               className="rounded-xl h-full object-cover"
+              priority
             />
           </div>
         ))}

@@ -8,7 +8,13 @@ import { SortOption } from "@/firebase/firestore";
 import Spinner from "@/components/atoms/Spinner";
 import { useTranslations } from "next-intl";
 
-const CardContainer = ({categoryI,sortI}:{categoryI:string;sortI:SortOption}) => {
+const CardContainer = ({
+  categoryI,
+  sortI,
+}: {
+  categoryI: string;
+  sortI: SortOption;
+}) => {
   const [keyword, setKeyword] = useState("");
   const [sortBy, setSortBy] = useState<SortOption | undefined>(sortI);
   const [category, setCategory] = useState(categoryI);
@@ -18,9 +24,9 @@ const CardContainer = ({categoryI,sortI}:{categoryI:string;sortI:SortOption}) =>
       keyword: debounceSearch,
       category: category === "all" ? "" : category,
       sortBy,
-      limitCount: 3,
+      limitCount: debounceSearch?15:3,
     });
-    const t=useTranslations("search");
+  const t = useTranslations("search");
   return (
     <>
       <SearchSection
@@ -36,12 +42,14 @@ const CardContainer = ({categoryI,sortI}:{categoryI:string;sortI:SortOption}) =>
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      {loading && <Spinner/>}
+      {loading && <Spinner />}
       {error && <p className="text-red-500">{error}</p>}
-      {hasMore && !loading && (
+      {hasMore && !loading && !debounceSearch && (
         <button
           className="mt-4 px-4 py-2 bg-primary block mx-auto text-white rounded-lg"
-          onClick={() => fetchProducts(false)}
+          onClick={() => {
+            fetchProducts(false);
+          }}
         >
           {t("more")}
         </button>

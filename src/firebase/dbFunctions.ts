@@ -8,7 +8,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { auth, db } from "./config";
-import { ProductType } from "./firestore";
+import { getProductsByIds, ProductType } from "./firestore";
 
 // ✅ Add to favorites
 export const addToFavorites = async (productId: string) => {
@@ -37,12 +37,24 @@ export const isInFavorites = async (productId: string): Promise<boolean> => {
   return snap.exists();
 };
 // ✅ Get all favorites
-export const getFavorites = async () => {
-  const userId = auth.currentUser?.uid;
-  if (!userId) return [];
-
+export const getFavorites = async (userId:string) => {
   const snapshot = await getDocs(collection(db, "users", userId, "favorites"));
   return snapshot.docs.map((doc) => doc.id);
+};
+
+// ✅ Get all favorites data direct
+export const getFavoriteProducts = async (userId?:string): Promise<ProductType[]|null> => {
+  if(!userId) return null
+  try {
+    const ids = await getFavorites(userId); 
+    if (ids.length === 0) return [];
+
+    const products = await getProductsByIds(ids); 
+    return products;
+  } catch (error) {
+    console.error("Error getting favorite products:", error);
+    return [];
+  }
 };
 
 //  cart

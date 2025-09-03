@@ -5,6 +5,7 @@ import StarsAll from "@/components/atoms/StarsAll";
 import Prices from "@/components/atoms/Prices";
 import Sizes from "@/components/atoms/Sizes";
 import Views from "@/components/atoms/Views";
+import Heart from "./Heart";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
   const {
@@ -46,7 +47,8 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         )}
         <Sizes sizes={sizes} />
       </figure>
-
+      {/* wishlist */}
+      <Heart id={id} position="absolute start-3 top-3" color="text-black/60"/>
       {/* BODY */}
       <div className="p-4">
         {/* title */}
@@ -79,7 +81,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         </p>
         {/* prices */}
         <Prices newPrice={newPrice} oldPrice={oldPrice} />
-        <CardButtons  size={sizes[0]} id={id} />
+        <CardButtons size={sizes[0]} id={id} />
       </div>
     </article>
   );

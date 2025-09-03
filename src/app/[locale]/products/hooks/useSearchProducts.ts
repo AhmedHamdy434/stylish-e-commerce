@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 import { ProductType, searchFilterSortProducts, SortOption } from "@/firebase/firestore";

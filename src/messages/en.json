@@ -102,7 +102,12 @@
     "card": {
       "details": "Details",
       "cart": "Add to cart",
-      "cartremove": "Remove from Cart"
+      "cartremove": "Remove from Cart",
+      "toastadd":"Added to cart",
+      "toastremove":"Removed from cart",
+      "toasterror":"Failed to update cart. Please try again.",
+      "toastsign":"You Should Sign Up First"
+
     },
     "more": "Load More"
   },
@@ -120,6 +125,17 @@
       "total": "Total",
       "checkout": "Go To CheckOut"
     }
+  },
+  "wishlist":{
+    "head": "Your WishList",
+    "empty": "Your wishlist is empty.",
+    "signIn": "You should sign in to make your wishlist",
+    "error": "Failed to load wishlist. Please try again.",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "added":"The item added to wishlist",
+    "toastError":"Something went wrong",
+    "removed":"The item removed from wishlist"
   },
   "footer": {
     "brand": "FashionStore",

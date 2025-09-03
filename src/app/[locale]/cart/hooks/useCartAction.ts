@@ -17,6 +17,7 @@ export const useAddCounter = (id: string) => {
     },
   });
 };
+
 export const useDecreaseCounter = (id: string) => {
   const queryClient = useQueryClient();
 
@@ -40,38 +41,3 @@ export const useRemoveCounter = (id: string) => {
     },
   });
 };
-// "use client";
-// import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import { addToCart, decreaseCartQuantity } from "@/firebase/dbFunctions";
-// import toast from "react-hot-toast";
-
-// export function useCartActions(productId:string) {
-//   const queryClient = useQueryClient();
-
-//   const addMutation = useMutation({
-//     mutationFn: async ( size : string ) =>
-//       await addToCart(productId, size),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: ["cartProductQuantity"] });
-//     },
-//     onError:()=>{
-//         toast.error("something wrong")
-//     }
-//   });
-
-//   const decreaseMutation = useMutation({
-//     mutationFn: async () => await decreaseCartQuantity(productId),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: ["cartProductQuantity"] });
-//     },
-//   });
-
-//   return {
-//     addToCart: addMutation.mutateAsync,
-//     decreaseCartQuantity: decreaseMutation.mutateAsync,
-//     isAdding: addMutation.isPending,
-//     isDecreasing: decreaseMutation.isPending,
-//     addError: addMutation.error as Error | null,
-//     decreaseError: decreaseMutation.error as Error | null,
-//   };
-// }

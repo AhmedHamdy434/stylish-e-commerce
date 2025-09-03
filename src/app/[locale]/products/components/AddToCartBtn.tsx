@@ -27,15 +27,19 @@ const AddToCartBtn = ({
     useRemoveCounter(id);
 
   const handleClick = async () => {
+    if (!userId) {
+      toast.error(t("toastsign"));
+      return;
+    }
     try {
       if (inCart) {
         await remove();
       } else {
         await add(size);
       }
-      toast.success(inCart ? "Removed from cart" : "Added to cart");
+      toast.success(inCart ? t("toastremove") : t("toastadd"));
     } catch {
-      toast.error("Failed to update cart. Please try again.");
+      toast.error(t("toasterror"));
     }
   };
   return (
@@ -44,7 +48,7 @@ const AddToCartBtn = ({
       <button
         type="button"
         disabled={addPending || decreasePending}
-        className={`flex-1 whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium text-white shadow-sm hover:brightness-95 disabled:opacity-60 ${customClassName}
+        className={`flex-1 truncate whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium text-white shadow-sm hover:brightness-95 disabled:opacity-60 ${customClassName}
       ${inCart ? "bg-blue-500" : "bg-primary"}`}
         data-action="add-to-cart"
         onClick={handleClick}

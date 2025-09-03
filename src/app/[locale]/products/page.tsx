@@ -8,14 +8,14 @@ const page = async ({
   searchParams: Promise<{ sort: SortOption; category: string }>;
 }) => {
   const { sort, category } = await searchParams;
-  const t=await getTranslations("search")
+  const t = await getTranslations("search");
 
   return (
     <div className="container px-3 mx-auto py-8 min-h-screen">
-        <h1 className="text-3xl mb-6 md:text-4xl font-bold tracking-tight text-primary">
+      <h3 className="text-3xl mb-6 md:text-4xl font-bold tracking-tight text-primary">
         {t("heading")}
-      </h1>
-      <p className="text-muted-foreground mb-6 text-sm md:text-base leading-relaxed">
+      </h3>
+      <p className="text-muted-foreground mb-6 text-sm md:text-base leading-7">
         {t("paragraph")}
       </p>
       <CardContainer sortI={sort} categoryI={category} />
