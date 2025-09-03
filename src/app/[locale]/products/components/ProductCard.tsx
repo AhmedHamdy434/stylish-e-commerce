@@ -6,7 +6,7 @@ import Prices from "@/components/atoms/Prices";
 import Sizes from "@/components/atoms/Sizes";
 import Views from "@/components/atoms/Views";
 
-const ProductCard = ({ product }: { product: ProductType }) => {
+const ProductCard = async({ product }: { product: ProductType }) => {
   const {
     id,
     description,
@@ -79,7 +79,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         </p>
         {/* prices */}
         <Prices newPrice={newPrice} oldPrice={oldPrice} />
-        <CardButtons id={id} />
+        <CardButtons  size={sizes[0]} id={id} />
       </div>
     </article>
   );

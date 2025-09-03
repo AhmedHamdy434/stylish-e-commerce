@@ -101,7 +101,8 @@
     },
     "card": {
       "details": "Details",
-      "cart": "Add to cart"
+      "cart": "Add to cart",
+      "cartremove": "Remove from Cart"
     },
     "more": "Load More"
   },

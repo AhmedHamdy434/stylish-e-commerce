@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import Header from "@/components/templates/Header";
 import Footer from "@/components/templates/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,9 +53,11 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider>
             <AuthProvider>
-              <Header />
-              {children}
-              <Footer />
+              <ReactQueryProvider>
+                <Header />
+                {children}
+                <Footer />
+              </ReactQueryProvider>
             </AuthProvider>
           </NextIntlClientProvider>
         </ThemeProvider>

@@ -1,7 +1,8 @@
 "use client";
+import AddToCartBtn from "@/app/[locale]/products/components/AddToCartBtn";
 import { useState } from "react";
 
-const SizesAction = ({ sizes }: { sizes: string[] }) => {
+const SizesAction = ({ id, sizes }: { id: string; sizes: string[] }) => {
   const [active, setActive] = useState(0);
   return (
     <>
@@ -23,6 +24,11 @@ const SizesAction = ({ sizes }: { sizes: string[] }) => {
           ))}
         </div>
       )}
+      <AddToCartBtn
+        id={id}
+        customClassName="w-full leading-7 mt-6"
+        size={sizes[active]}
+      />
     </>
   );
 };
