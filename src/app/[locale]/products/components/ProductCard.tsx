@@ -6,7 +6,7 @@ import Prices from "@/components/atoms/Prices";
 import Sizes from "@/components/atoms/Sizes";
 import Views from "@/components/atoms/Views";
 
-const ProductCard = async({ product }: { product: ProductType }) => {
+const ProductCard = ({ product }: { product: ProductType }) => {
   const {
     id,
     description,

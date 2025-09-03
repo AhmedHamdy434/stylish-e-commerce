@@ -106,6 +106,21 @@
     },
     "more": "Load More"
   },
+  "cart": {
+    "head": "Your Cart",
+    "empty": "Your cart is empty.",
+    "signIn": "You should sign in to view cart",
+    "error": "Failed to load cart. Please try again.",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "summary": {
+      "head": "Order Summary",
+      "subTotal": "Subtotal",
+      "delivery": "Delivery Fee",
+      "total": "Total",
+      "checkout": "Go To CheckOut"
+    }
+  },
   "footer": {
     "brand": "FashionStore",
     "about": "Discover stylish clothing for Men, Women, and Kids. Your fashion journey starts here.",

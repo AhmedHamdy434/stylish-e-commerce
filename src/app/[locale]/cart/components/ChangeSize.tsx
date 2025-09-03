@@ -31,13 +31,13 @@ const ChangeSize = ({
   return (
     <>
       {sizes?.length > 0 && (
-        <div className="space-x-2">
+        <div className="flex gap-2 flex-nowrap">
           {sizes.map((sizeItem) => (
             <button
               key={sizeItem}
               onClick={() => handleClick(sizeItem)}
               disabled={isPending}
-              className={`rounded-lg uppercase px-2.5 py-1 text-xs cursor-pointer ${
+              className={`rounded-lg uppercase whitespace-nowrap px-2.5 py-1 text-xs cursor-pointer ${
                 currentSize === sizeItem
                   ? "bg-primary"
                   : "border border-primary text-primary"

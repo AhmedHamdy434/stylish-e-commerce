@@ -13,6 +13,7 @@ export const useAddCounter = (id: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cartProductQuantity", id] });
       queryClient.invalidateQueries({ queryKey: ["cartButton"] });
+      queryClient.invalidateQueries({ queryKey: ["cartTotal"] });
     },
   });
 };
@@ -23,6 +24,7 @@ export const useDecreaseCounter = (id: string) => {
     mutationFn: () => decreaseCartQuantity(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cartProductQuantity", id] });
+      queryClient.invalidateQueries({ queryKey: ["cartTotal"] });
     },
   });
 };
@@ -33,8 +35,8 @@ export const useRemoveCounter = (id: string) => {
     mutationFn: () => removeFromCart(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cartButton"] });
-            queryClient.invalidateQueries({ queryKey: ["cart"] });
-
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      queryClient.invalidateQueries({ queryKey: ["cartTotal"] });
     },
   });
 };

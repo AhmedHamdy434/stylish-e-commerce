@@ -41,9 +41,7 @@ export const getFavorites = async () => {
   const userId = auth.currentUser?.uid;
   if (!userId) return [];
 
-  const snapshot = await getDocs(
-    collection(db, "users", userId, "favorites")
-  );
+  const snapshot = await getDocs(collection(db, "users", userId, "favorites"));
   return snapshot.docs.map((doc) => doc.id);
 };
 
@@ -107,9 +105,7 @@ export const getCartItems = async () => {
   const userId = auth.currentUser?.uid;
   if (!userId) return [];
 
-  const snapshot = await getDocs(
-    collection(db, "users", userId, "cart")
-  );
+  const snapshot = await getDocs(collection(db, "users", userId, "cart"));
   return snapshot.docs.map((doc) => ({
     id: doc.id,
     quantity: doc.data().quantity || 1,
@@ -118,7 +114,10 @@ export const getCartItems = async () => {
 };
 
 // ✅ Check if product is in cart
-export const isInCart = async (productId: string,userId?:string): Promise<boolean> => {
+export const isInCart = async (
+  productId: string,
+  userId?: string
+): Promise<boolean> => {
   if (!userId) return false;
 
   const ref = doc(db, "users", userId, "cart", productId);
@@ -126,7 +125,6 @@ export const isInCart = async (productId: string,userId?:string): Promise<boolea
 
   return snap.exists();
 };
-
 
 // change size
 export const updateCartItemSize = async (
@@ -144,11 +142,11 @@ export const updateCartItemSize = async (
   }
 };
 
-// user details by id 
+// user details by id
 export const getUserDetails = async (userId: string) => {
   if (!userId) return null;
 
-  const ref = doc(db, "users","userDetails", userId);
+  const ref = doc(db, "users", "userDetails", userId);
   const snap = await getDoc(ref);
 
   if (!snap.exists()) return null;
@@ -160,7 +158,9 @@ export const getUserDetails = async (userId: string) => {
 };
 
 // ✅ Get quantity of a specific product in cart
-export const getCartItemQuantity = async (productId: string): Promise<number> => {
+export const getCartItemQuantity = async (
+  productId: string
+): Promise<number> => {
   const userId = auth.currentUser?.uid;
   if (!userId) return 0;
 
@@ -173,7 +173,9 @@ export const getCartItemQuantity = async (productId: string): Promise<number> =>
 };
 
 // ✅ Get size of a specific product in cart
-export const getCartItemSize = async (productId: string): Promise<string | null> => {
+export const getCartItemSize = async (
+  productId: string
+): Promise<string | null> => {
   const userId = auth.currentUser?.uid;
   if (!userId) return null;
 
@@ -185,7 +187,6 @@ export const getCartItemSize = async (productId: string): Promise<string | null>
   return snap.data().size || null;
 };
 
-
 // assuming you already have these types somewhere:
 export type CartType = {
   id: string;
@@ -194,15 +195,15 @@ export type CartType = {
   addedAt?: Date;
 };
 
-
-
 export type CartItemWithProduct = {
   cartItem: CartType;
   product: ProductType;
 };
 
 // ✅ Get cart items + product details
-export const getCartWithProducts = async (userId?: string): Promise<CartItemWithProduct[]> => {
+export const getCartWithProducts = async (
+  userId?: string
+): Promise<CartItemWithProduct[]> => {
   if (!userId) return [];
 
   const snapshot = await getDocs(collection(db, "users", userId, "cart"));
@@ -219,7 +220,7 @@ export const getCartWithProducts = async (userId?: string): Promise<CartItemWith
     };
 
     // get product details
-    const productRef = doc(db, "products", docSnap.id); 
+    const productRef = doc(db, "products", docSnap.id);
     const productSnap = await getDoc(productRef);
 
     if (productSnap.exists()) {
@@ -232,4 +233,32 @@ export const getCartWithProducts = async (userId?: string): Promise<CartItemWith
   }
 
   return cartItems;
+};
+
+// ✅ Get total price of all products in the user's cart
+export const getCartTotalPrice = async (userId?: string): Promise<number> => {
+  if (!userId) return 0;
+
+  const cartSnap = await getDocs(collection(db, "users", userId, "cart"));
+  if (cartSnap.empty) return 0;
+
+  let total = 0;
+
+  for (const docSnap of cartSnap.docs) {
+    const cartData = docSnap.data();
+    const quantity = cartData.quantity || 1;
+
+    // get product from products collection
+    const productRef = doc(db, "products", docSnap.id);
+    const productSnap = await getDoc(productRef);
+
+    if (productSnap.exists()) {
+      const productData = productSnap.data();
+      const price = productData.newPrice || 0;
+
+      total += price * quantity;
+    }
+  }
+
+  return total;
 };

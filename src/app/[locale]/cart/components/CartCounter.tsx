@@ -2,12 +2,22 @@
 
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Alert from "@/components/atoms/Alert";
-import { useAddCounter, useDecreaseCounter, useRemoveCounter } from "../hooks/useCartAction";
-import { useGetQuantity } from "../hooks/useGetQuantity";
+import {
+  useAddCounter,
+  useDecreaseCounter,
+  useRemoveCounter,
+} from "../hooks/useCartAction";
 
-const CartCounter = ({ id, size }: { id: string; size: string }) => {
-  const { mutateAsync:remove } = useRemoveCounter(id);
-  const { data } = useGetQuantity(id);
+const CartCounter = ({
+  id,
+  size,
+  quantity,
+}: {
+  id: string;
+  size: string;
+  quantity: number;
+}) => {
+  const { mutateAsync: remove } = useRemoveCounter(id);
   const { mutateAsync: addOne, isPending: addPending } = useAddCounter(id);
   const { mutateAsync: decreaseOne, isPending: decreasePending } =
     useDecreaseCounter(id);
@@ -23,14 +33,16 @@ const CartCounter = ({ id, size }: { id: string; size: string }) => {
       <div className="bg-secondary flex items-center py-2 px-4 rounded-lg gap-3">
         <button
           onClick={() => decreaseOne()}
-          disabled={addPending || decreasePending}
+          disabled={addPending || decreasePending || quantity === 1}
+          className="disabled:opacity-40 disabled:cursor-default!"
         >
           <Minus className="w-4 h-4" />
         </button>
-        <span className="text-sm">{data}</span>
+        <span className="text-sm">{quantity}</span>
         <button
           disabled={addPending || decreasePending}
           onClick={() => addOne(size)}
+          className="disabled:opacity-40 disabled:cursor-default!"
         >
           <Plus className="w-4 h-4" />
         </button>
